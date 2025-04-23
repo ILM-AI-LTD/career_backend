@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .header { background-color: #0ea5e9; padding: 20px; color: white; }
+    .content { padding: 20px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>New Job Application</h1>
+  </div>
+  <div class="content">
+    <p>A new application has been submitted:</p>
+    <ul>
+      <li><strong>Name:</strong> {{firstName}} {{lastName}}</li>
+      <li><strong>Email:</strong> {{email}}</li>
+      <li><strong>Phone:</strong> {{phone}}</li>
+      <li><strong>Position:</strong> {{jobPosition}}</li>
+    </ul>
+    <h3>Cover Letter:</h3>
+    <p>{{coverLetter}}</p>
+  </div>
+</body>
+</html>

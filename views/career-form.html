@@ -115,7 +115,7 @@
     <h1>Careers Form</h1>
     <p class="subtitle">We'd love to hear from you. Please fill out this form.</p>
     
-    <form>
+    <form action="/submit-application" method="post" enctype="multipart/form-data">
       <div class="form-row">
         <div class="form-group">
           <label for="firstName">First name *</label>
@@ -141,11 +141,11 @@
       <div class="form-group">
         <label for="jobPosition">Job Position *</label>
         <select id="jobPosition" name="jobPosition" required>
-          <option value="" disabled selected>Product Designer</option>
-          <option value="designer">Product Designer</option>
-          <option value="developer">Developer</option>
-          <option value="manager">Product Manager</option>
-          <option value="marketing">Marketing Specialist</option>
+          <option value="" disabled selected>Select a position</option>
+          <option value="Product Designer">Product Designer</option>
+          <option value="Developer">Developer</option>
+          <option value="Product Manager">Product Manager</option>
+          <option value="Marketing Specialist">Marketing Specialist</option>
         </select>
       </div>
       
@@ -193,6 +193,31 @@
       document.getElementById('cv').files = e.dataTransfer.files;
       const fileName = e.dataTransfer.files[0]?.name;
       document.getElementById('file-name').textContent = fileName ? `Selected file: ${fileName}` : '';
+    }
+  });
+
+  document.querySelector('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    
+    try {
+      const response = await fetch('/submit-application', {
+        method: 'POST',
+        body: formData
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        alert('Application submitted successfully!');
+        e.target.reset();
+      } else {
+        alert(result.message || 'Error submitting form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error submitting form. Please try again.');
     }
   });
 </script>
