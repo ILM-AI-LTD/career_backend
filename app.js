@@ -1,8 +1,23 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const careerRoutes = require('./routes/careerRoutes');
 
 const app = express();
+
+const allowedOrigins = ['http://localhost:3000'];
+
+// Enable CORS
+app.use(cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+  }));
 
 // Middleware
 app.use(express.json());
