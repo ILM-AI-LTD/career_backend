@@ -28,16 +28,16 @@ const submitApplication = async (req, res) => {
     if (emailResult.success) {
       console.log('Emails sent successfully');
       console.log('----------------------------------------');
-      res.status(200).json({ success: true, message: 'Application submitted successfully' });
+      res.status(200).json({ status: 'success', message: 'Application submitted successfully' });
     } else {
       console.log('Failed to send emails:', emailResult.error);
       console.log('----------------------------------------');
-      res.status(500).json({ success: false, message: 'Failed to send emails' });
+      res.status(500).json({ status: 'error', message: 'Failed to send emails' });
     }
   } catch (error) {
     console.error('Error in submitApplication:', error);
     console.log('----------------------------------------');
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: 'error', message: 'Server error' });
   }
 };
 

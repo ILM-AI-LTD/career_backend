@@ -10,6 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'views')));
 
 // Routes
-app.use('/', careerRoutes);
+app.use('/api', careerRoutes);
 
 module.exports = app;
