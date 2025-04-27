@@ -6,8 +6,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: process.env.EMAIL_USER || 'recruitment@ilm-ai-ltd.com',
-    pass: process.env.EMAIL_PASS || 'clnkzyygsiycwuzy'
+    user: process.env.EMAIL_USER ,
+    pass: process.env.EMAIL_PASS 
   }
 });
 
