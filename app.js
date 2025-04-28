@@ -5,7 +5,7 @@ const careerRoutes = require('./routes/careerRoutes');
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000', 'https://development.d3b7tf0u4wf70e.amplifyapp.com'];
+const allowedOrigins = ['http://localhost:3000', 'https://development.d1dxdcfh1vnsex.amplifyapp.com'];
 
 // Enable CORS
 app.use(cors({
