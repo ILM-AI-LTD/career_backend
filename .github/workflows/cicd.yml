@@ -1,4 +1,4 @@
-name: CICD
+name: CI-CD
 on:
   push:
     branches:
@@ -15,7 +15,7 @@ jobs:
           node-version: 22
       - name: Install Dependencies
         run: npm install
-      - name: Genrate Deployment Package
+      - name: Generate Deployment Package
         run: zip -r career_backend-dev_prototype.zip 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
