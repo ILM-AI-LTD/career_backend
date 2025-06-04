@@ -16,7 +16,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Generate Deployment Package
-        run: zip -r career_backend-dev_prototype.zip 
+        run: zip -r career_backend-dev_prototype.zip .
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
