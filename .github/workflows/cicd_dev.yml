@@ -17,6 +17,10 @@ jobs:
         run: npm install
       - name: Generate Deployment Package
         run: zip -r career_backend-dev_prototype.zip .
+
+      - name: Set Version Label
+        run: echo "VERSION_LABEL=dev_prototype-$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
@@ -24,6 +28,6 @@ jobs:
             aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             application_name: 'test-case-3'  # Updated application name
             environment_name: 'Test-case-3-env'  # Updated environment name
-            version_label: ${{ github.ref_name }}
+            version_label: ${{ env.VERSION_LABEL }}
             region: eu-west-2  # Update this if your environment is in a different AWS region
             deployment_package: career_backend-dev_prototype.zip
