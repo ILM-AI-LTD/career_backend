@@ -115,7 +115,7 @@
     <h1>Careers Form</h1>
     <p class="subtitle">We'd love to hear from you. Please fill out this form.</p>
     
-    <form action="/submit-application" method="post" enctype="multipart/form-data">
+    <form action="/api/submit-application" method="post" enctype="multipart/form-data">
       <div class="form-row">
         <div class="form-group">
           <label for="firstName">First name *</label>
@@ -202,7 +202,7 @@
     const formData = new FormData(e.target);
     
     try {
-      const response = await fetch('/submit-application', {
+      const response = await fetch('/api/submit-application', {
         method: 'POST',
         body: formData
       });
