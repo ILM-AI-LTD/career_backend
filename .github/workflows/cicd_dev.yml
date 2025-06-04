@@ -1,0 +1,29 @@
+name: CI-CD
+on:
+  push:
+    branches:
+      - dev_prototype
+jobs:
+  build-and-deploy:
+    runs-on: [ ubuntu-latest ]
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Dependencies
+        run: npm install
+      - name: Generate Deployment Package
+        run: zip -r career_backend-dev_prototype.zip 
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+            aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+            aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            application_name: 'test-case-3'  # Updated application name
+            environment_name: 'Test-case-3-env'  # Updated environment name
+            version_label: ${{ github.ref_name }}
+            region: eu-west-2  # Update this if your environment is in a different AWS region
+            deployment_package: career_backend-dev_prototype.zip
